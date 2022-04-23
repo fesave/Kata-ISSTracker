@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ISSTracker</string>
-    <string name="location_permissions_message">This application cannot work without Location Permission.</string>
-    <string name="location_not_found">Location not found</string>
+    <string name="location_permissions_message">La aplicación no puede funcionar sin permisos de localización.</string>
+    <string name="coordinates_not_found">No ha sido posible recuperar tus coordenadas.</string>
+    <string name="current_street_name">Estás en: %1$s </string>
+    <string name="toolbar_title">Próximos sobrevuelos </string>
 </resources>

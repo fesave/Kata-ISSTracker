@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ISSTracker</string>
+    <string name="location_permissions_message">This application cannot work without Location Permission.</string>
 </resources>

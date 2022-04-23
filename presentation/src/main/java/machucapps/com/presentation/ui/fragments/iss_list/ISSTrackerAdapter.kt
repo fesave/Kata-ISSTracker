@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import machucapps.com.domain.data.PassItem
 import machucapps.com.isstracker.databinding.IssTrackItemBinding
+import machucapps.com.presentation.ui.ext.formatDate
+import machucapps.com.presentation.ui.ext.formatDuration
 
 class ISSTrackerAdapter(
     private val context: Context
@@ -25,8 +27,8 @@ class ISSTrackerAdapter(
     override fun onBindViewHolder(holder: ISSTrackerViewHolder, position: Int) {
         with(holder) {
             with(passesList[position]) {
-                binding.textIssItemDate.text = this.riseTime.toString()
-                binding.textIssItemDuration.text = this.duration.toString()
+                binding.textIssItemDate.text = this.riseTime.formatDate()
+                binding.textIssItemDuration.text = this.duration.formatDuration(context)
             }
         }
     }

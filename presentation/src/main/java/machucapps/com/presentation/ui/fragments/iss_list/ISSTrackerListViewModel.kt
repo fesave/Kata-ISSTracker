@@ -47,8 +47,7 @@ class ISSTrackerListViewModel(
                         _state.value = PassesState(passes = result.data)
                     }
                     is UseCaseResult.Error -> {
-                        _state.value =
-                            PassesState(error = result.throwable.message ?: "Error desconocido")
+                        _state.value = PassesState(error = result.throwable.message ?: "Error desconocido")
                     }
                 }
 

@@ -45,7 +45,7 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
         requestLocationPermission()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { value: PassesState -> printList(value) }
+            viewModel.state.collect { value: PassesState -> printData(value) }
         }
     }
 
@@ -99,8 +99,10 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     }
 
-    private fun printList(value: PassesState) {
-
+    private fun printData(state: PassesState) {
+        if(state.error.isNotEmpty()){
+            makeToast(state.error)
+        }
     }
 
     override fun onRequestPermissionsResult(

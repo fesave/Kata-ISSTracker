@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.flow.collect
+import machucapps.com.domain.data.PassItem
 import machucapps.com.isstracker.R
 import machucapps.com.isstracker.databinding.IssTrackerListFragmentBinding
 import machucapps.com.presentation.ui.ext.makeToast
@@ -100,8 +102,22 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun printData(state: PassesState) {
-        if(state.error.isNotEmpty()){
+        if (state.error.isNotEmpty()) {
             makeToast(state.error)
+        }
+
+        if (state.passes.isNotEmpty()) {
+            setRecyclerViewAdapter(state.passes)
+        }
+    }
+
+    private fun setRecyclerViewAdapter(passes: List<PassItem>) {
+        val adapter = ISSTrackerAdapter(requireContext()).apply {
+            setData(passes)
+        }
+        binding.list.apply {
+            setAdapter(adapter)
+            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 

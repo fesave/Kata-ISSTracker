@@ -1,4 +1,4 @@
-package machucapps.com.isstracker
+package machucapps.com.framework
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("machucapps.com.isstracker", appContext.packageName)
+        assertEquals("machucapps.com.framework.test", appContext.packageName)
     }
 }

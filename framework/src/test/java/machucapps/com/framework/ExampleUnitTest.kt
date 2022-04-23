@@ -1,4 +1,4 @@
-package machucapps.com.isstracker
+package machucapps.com.framework
 
 import org.junit.Test
 

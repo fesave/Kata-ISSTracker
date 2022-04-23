@@ -6,7 +6,7 @@
         <entry key="presentation/src/main/res/drawable/ic_arrow.xml" value="0.17407407407407408" />
         <entry key="presentation/src/main/res/layout/activity_main.xml" value="0.184375" />
         <entry key="presentation/src/main/res/layout/iss_track_item.xml" value="0.2526041666666667" />
-        <entry key="presentation/src/main/res/layout/iss_tracker_list_fragment.xml" value="0.184375" />
+        <entry key="presentation/src/main/res/layout/iss_tracker_list_fragment.xml" value="0.25" />
         <entry key="presentation/src/main/res/layout/street_header.xml" value="0.2346014492753623" />
       </map>
     </option>

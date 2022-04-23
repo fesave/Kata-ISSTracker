@@ -1,7 +1,7 @@
-package machucapps.com.framework.datasource.provider.impl
+package machucapps.com.framework.provider.impl
 
 import android.content.Context
-import machucapps.com.framework.datasource.provider.ContextProvider
+import machucapps.com.framework.provider.ContextProvider
 
 class ContextProviderImpl(
     private val context: Context

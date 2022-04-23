@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
+import kotlinx.coroutines.flow.collect
 import machucapps.com.isstracker.R
 import machucapps.com.isstracker.databinding.IssTrackerListFragmentBinding
 import machucapps.com.presentation.ui.ext.makeToast
@@ -41,6 +43,10 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
         requestLocationPermission()
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.state.collect { value: PassesState -> printList(value) }
+        }
     }
 
     private fun setToolbar() {
@@ -79,6 +85,7 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
                 if (location == null) {
                     makeToast(R.string.coordinates_not_found)
                 } else {
+                    viewModel.getPasses(location.latitude, location.longitude)
                     setData(location.latitude, location.longitude)
                 }
             }
@@ -89,6 +96,11 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setData(latitude: Double, longitude: Double) {
         binding.header.textTrackerListStreetName.text = viewModel.getStreetName(latitude, longitude)
+
+    }
+
+    private fun printList(value: PassesState) {
+
     }
 
     override fun onRequestPermissionsResult(

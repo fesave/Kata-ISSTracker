@@ -1,4 +1,4 @@
-package machucapps.com.framework.datasource.provider
+package machucapps.com.framework.provider
 
 import android.content.Context
 

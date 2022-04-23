@@ -1,8 +1,7 @@
-package machucapps
+package machucapps.com.presentation
 
 import android.app.Application
-import machucapps.com.presentation.di.commonModule
-import machucapps.com.presentation.di.viewModelModule
+import machucapps.com.presentation.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -16,7 +15,10 @@ class ISSTracker : Application() {
             modules(
                 listOf(
                     commonModule,
-                    viewModelModule
+                    remoteModule,
+                    repositoryModule,
+                    useCaseModule,
+                    viewModelModule,
                 )
             )
         }

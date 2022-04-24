@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -98,10 +99,12 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setData(latitude: Double, longitude: Double) {
         binding.header.textTrackerListStreetName.text = viewModel.getStreetName(latitude, longitude)
-
     }
 
     private fun printData(state: PassesState) {
+
+        binding.progressBar.isVisible = state.isLoading
+
         if (state.error.isNotEmpty()) {
             makeToast(state.error)
         }

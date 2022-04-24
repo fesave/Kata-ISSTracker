@@ -48,7 +48,7 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
         requestLocationPermission()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { value: PassesState -> printData(value) }
+            viewModel.state.collect { value: ISSPassesState -> setData(value) }
         }
     }
 
@@ -84,8 +84,8 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
                 if (location == null) {
                     makeToast(R.string.coordinates_not_found)
                 } else {
-                    viewModel.getPasses(location.latitude, location.longitude)
-                    setData(location.latitude, location.longitude)
+                    viewModel.getISSPasses(location.latitude, location.longitude)
+                    setHeaderData(location.latitude, location.longitude)
                 }
             }
         } else {
@@ -93,11 +93,12 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    private fun setData(latitude: Double, longitude: Double) {
-        binding.header.textTrackerListStreetName.text = viewModel.getStreetName(latitude, longitude)
+    private fun setHeaderData(latitude: Double, longitude: Double) {
+        binding.header.textTrackerListStreetName.text =
+            viewModel.getUserStreetLocation(latitude, longitude)
     }
 
-    private fun printData(state: PassesState) {
+    private fun setData(state: ISSPassesState) {
 
         binding.progressBar.isVisible = state.isLoading
 
@@ -112,7 +113,14 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setRecyclerViewAdapter(passes: List<PassItem>) {
         val adapter = ISSTrackerAdapter(requireContext()) { passItem ->
-            navigateTo(ISSTrackerListDirections.actionISSTrackerListToISSPassDetail())
+            navigateTo(
+                ISSTrackerListDirections.actionISSTrackerListToISSPassDetail(
+                    PassItemNav(
+                        currentLocation = viewModel.currentUserLocation,
+                        passItem = passItem
+                    )
+                )
+            )
         }.apply {
             setData(passes)
         }

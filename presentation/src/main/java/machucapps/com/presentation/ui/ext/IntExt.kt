@@ -20,3 +20,13 @@ fun Int.formatDuration(context: Context): String {
         seconds
     )
 }
+
+fun Int.formatFutureDuration(context: Context): String {
+    val minutes = this.div(60)
+    val seconds = this.rem(60)
+    return String.format(
+        context.getString(R.string.iss_duration_time_detail),
+        minutes,
+        seconds
+    )
+}

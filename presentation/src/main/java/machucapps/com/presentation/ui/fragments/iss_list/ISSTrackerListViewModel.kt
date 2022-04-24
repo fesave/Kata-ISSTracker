@@ -20,19 +20,22 @@ class ISSTrackerListViewModel(
     private val getISSPassesUseCase: GetISSPassesUseCase,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(PassesState())
-    val state: StateFlow<PassesState> = _state
+    private val _state = MutableStateFlow(ISSPassesState())
+    val state: StateFlow<ISSPassesState> = _state
 
-    fun getStreetName(latitude: Double, longitude: Double): String {
+    lateinit var currentUserLocation: String
+
+    fun getUserStreetLocation(latitude: Double, longitude: Double): String {
         val geocoder = Geocoder(contextProvider.getContext(), Locale.getDefault())
         val address = geocoder.getFromLocation(latitude, longitude, 1).first()
             .getAddressLine(0)
             .toString()
-        return contextProvider.getCustomString(R.string.current_street_name, address)
+        currentUserLocation = contextProvider.getCustomString(R.string.current_street_name, address)
+        return currentUserLocation
     }
 
-    fun getPasses(latitude: Double, longitude: Double) {
-        _state.value = PassesState(isLoading = true)
+    fun getISSPasses(latitude: Double, longitude: Double) {
+        _state.value = ISSPassesState(isLoading = true)
         viewModelScope.launch {
             getISSPassesUseCase.execute(
                 GetISSPassesUseCase.Params(
@@ -44,11 +47,11 @@ class ISSTrackerListViewModel(
             ).collect { result ->
                 when (result) {
                     is UseCaseResult.Success -> {
-                        _state.value = PassesState(passes = result.data)
+                        _state.value = ISSPassesState(passes = result.data)
                     }
                     is UseCaseResult.Error -> {
                         _state.value =
-                            PassesState(
+                            ISSPassesState(
                                 error = result.throwable.message
                                     ?: contextProvider.getString(R.string.unknown_error)
                             )
@@ -60,7 +63,7 @@ class ISSTrackerListViewModel(
     }
 }
 
-data class PassesState(
+data class ISSPassesState(
     val isLoading: Boolean = false,
     val passes: List<PassItem> = emptyList(),
     val error: String = ""

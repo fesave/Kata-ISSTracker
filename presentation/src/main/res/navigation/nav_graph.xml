@@ -22,5 +22,9 @@
         android:id="@+id/ISSPassDetail"
         android:name="machucapps.com.presentation.ui.fragments.pass_detail.ISSPassDetail"
         android:label="@string/toolbar_title"
-        tools:layout="@layout/iss_pass_detail_fragment" />
+        tools:layout="@layout/iss_pass_detail_fragment">
+        <argument
+            android:name="currentPass"
+            app:argType="machucapps.com.presentation.ui.fragments.iss_list.PassItemNav" />
+    </fragment>
 </navigation>

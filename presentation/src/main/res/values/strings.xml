@@ -5,4 +5,5 @@
     <string name="current_street_name">Estás en: %1$s</string>
     <string name="toolbar_title">Próximos sobrevuelos</string>
     <string name="iss_duration_time">Durante %1$d minutos y %2$d segundos.</string>
+    <string name="unknown_error">Error desconocido</string>
 </resources>

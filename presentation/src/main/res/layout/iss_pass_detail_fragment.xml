@@ -34,13 +34,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="@dimen/size_4" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_pass_detail_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:text="@string/iss_detail_title"
-        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         app:layout_constraintLeft_toRightOf="@id/guideline_start"
         app:layout_constraintRight_toLeftOf="@id/guideline_end"
         app:layout_constraintTop_toBottomOf="@id/header" />
@@ -52,6 +59,7 @@
         android:layout_marginTop="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_2"
         android:textAlignment="textEnd"
+        android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
         app:layout_constraintLeft_toRightOf="@id/guideline_start"
         app:layout_constraintRight_toLeftOf="@id/guideline_center"
@@ -77,10 +85,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         app:layout_constraintLeft_toRightOf="@id/guideline_start"
         app:layout_constraintRight_toLeftOf="@id/guideline_end"
         app:layout_constraintTop_toBottomOf="@id/text_pass_detail_seconds_value"
+        tools:text="@tools:sample/lorem[12]" />
+
+    <View
+        android:id="@+id/text_pass_detail_red_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/radical_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_bottom" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_pass_detail_number_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline_start"
+        app:layout_constraintRight_toLeftOf="@id/guideline_end"
+        app:layout_constraintTop_toBottomOf="@id/guideline_bottom"
         tools:text="@tools:sample/lorem[12]" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

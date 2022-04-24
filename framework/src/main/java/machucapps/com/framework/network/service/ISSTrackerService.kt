@@ -1,6 +1,6 @@
 package machucapps.com.framework.network.service
 
-import machucapps.com.framework.network.response.ISSTrackerDTO
+import machucapps.com.framework.network.response.iss.ISSTrackerDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,12 +1,12 @@
-package machucapps.com.framework.network.response
+package machucapps.com.framework.network.response.iss
 
 import com.google.gson.annotations.SerializedName
 import machucapps.com.domain.data.PassItem
 
 data class ResponseDTO(
-    var duration: Int = 0,
+    val duration: Int = 0,
     @SerializedName("risetime")
-    var riseTime: Int = 0
+    val riseTime: Int = 0
 )
 
 fun ResponseDTO.toPassItem() = PassItem(

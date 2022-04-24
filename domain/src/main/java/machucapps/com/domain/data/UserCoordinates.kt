@@ -1,6 +1,6 @@
 package machucapps.com.domain.data
 
 data class UserCoordinates(
-    var latitude: Double,
-    var longitude: Double
+    val latitude: Double,
+    val longitude: Double
 )

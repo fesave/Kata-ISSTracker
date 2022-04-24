@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { ISSTrackerListViewModel(get(), get()) }
-    viewModel { ISSPassDetailViewModel() }
+    viewModel { ISSPassDetailViewModel(get(), get()) }
 }

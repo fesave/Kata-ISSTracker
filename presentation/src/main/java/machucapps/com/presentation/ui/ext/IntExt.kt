@@ -1,7 +1,5 @@
 package machucapps.com.presentation.ui.ext
 
-import android.content.Context
-import machucapps.com.isstracker.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -11,21 +9,11 @@ fun Int.formatDate(): String {
     return simpleDateFormat.format(this * 1000L)
 }
 
-fun Int.formatDuration(context: Context): String {
+fun Int.formatDuration(text: String): String {
     val minutes = this.div(60)
     val seconds = this.rem(60)
     return String.format(
-        context.getString(R.string.iss_duration_time),
-        minutes,
-        seconds
-    )
-}
-
-fun Int.formatFutureDuration(context: Context): String {
-    val minutes = this.div(60)
-    val seconds = this.rem(60)
-    return String.format(
-        context.getString(R.string.iss_duration_time_detail),
+        text,
         minutes,
         seconds
     )

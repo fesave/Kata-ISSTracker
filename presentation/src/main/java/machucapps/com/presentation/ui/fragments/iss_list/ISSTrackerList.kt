@@ -113,14 +113,7 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setRecyclerViewAdapter(passes: List<PassItem>) {
         val adapter = ISSTrackerAdapter(requireContext()) { passItem ->
-            navigateTo(
-                ISSTrackerListDirections.actionISSTrackerListToISSPassDetail(
-                    PassItemNav(
-                        currentLocation = viewModel.currentUserLocation,
-                        passItem = passItem
-                    )
-                )
-            )
+            navigateToDetailScreen(passItem)
         }.apply {
             setData(passes)
         }
@@ -129,6 +122,17 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
             setAdapter(adapter)
             layoutManager = LinearLayoutManager(requireContext())
         }
+    }
+
+    private fun navigateToDetailScreen(passItem: PassItem) {
+        navigateTo(
+            ISSTrackerListDirections.actionISSTrackerListToISSPassDetail(
+                PassItemNav(
+                    currentLocation = viewModel.currentUserLocation,
+                    passItem = passItem
+                )
+            )
+        )
     }
 
     override fun onRequestPermissionsResult(

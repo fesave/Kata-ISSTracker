@@ -10,7 +10,8 @@ import machucapps.com.presentation.ui.ext.formatDate
 import machucapps.com.presentation.ui.ext.formatDuration
 
 class ISSTrackerAdapter(
-    private val context: Context
+    private val context: Context,
+    private val listener: (PassItem) -> Unit
 ) : RecyclerView.Adapter<ISSTrackerAdapter.ISSTrackerViewHolder>() {
 
     private val passesList = mutableListOf<PassItem>()
@@ -30,6 +31,8 @@ class ISSTrackerAdapter(
                 binding.textIssItemDate.text = this.riseTime.formatDate()
                 binding.textIssItemDuration.text = this.duration.formatDuration(context)
             }
+
+            itemView.setOnClickListener { listener(passesList[position]) }
         }
     }
 

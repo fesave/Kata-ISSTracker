@@ -8,6 +8,19 @@
     <fragment
         android:id="@+id/ISSTrackerList"
         android:name="machucapps.com.presentation.ui.fragments.iss_list.ISSTrackerList"
-        android:label="iss_tracker_list_fragment"
-        tools:layout="@layout/iss_tracker_list_fragment" />
+        android:label="@string/toolbar_title"
+        tools:layout="@layout/iss_tracker_list_fragment">
+        <action
+            android:id="@+id/action_ISSTrackerList_to_ISSPassDetail"
+            app:destination="@id/ISSPassDetail"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/ISSPassDetail"
+        android:name="machucapps.com.presentation.ui.fragments.pass_detail.ISSPassDetail"
+        android:label="@string/toolbar_title"
+        tools:layout="@layout/iss_pass_detail_fragment" />
 </navigation>

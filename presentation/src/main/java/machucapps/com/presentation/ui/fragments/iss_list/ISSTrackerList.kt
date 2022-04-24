@@ -20,6 +20,7 @@ import machucapps.com.domain.data.PassItem
 import machucapps.com.isstracker.R
 import machucapps.com.isstracker.databinding.IssTrackerListFragmentBinding
 import machucapps.com.presentation.ui.ext.makeToast
+import machucapps.com.presentation.ui.ext.navigateTo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
@@ -42,7 +43,6 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setToolbar()
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
         requestLocationPermission()
@@ -50,10 +50,6 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.state.collect { value: PassesState -> printData(value) }
         }
-    }
-
-    private fun setToolbar() {
-        activity?.title = resources.getString(R.string.toolbar_title)
     }
 
     private fun hasLocationPermission() =
@@ -115,9 +111,12 @@ class ISSTrackerList : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun setRecyclerViewAdapter(passes: List<PassItem>) {
-        val adapter = ISSTrackerAdapter(requireContext()).apply {
+        val adapter = ISSTrackerAdapter(requireContext()) { passItem ->
+            navigateTo(ISSTrackerListDirections.actionISSTrackerListToISSPassDetail())
+        }.apply {
             setData(passes)
         }
+
         binding.list.apply {
             setAdapter(adapter)
             layoutManager = LinearLayoutManager(requireContext())
